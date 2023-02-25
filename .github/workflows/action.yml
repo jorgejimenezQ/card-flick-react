@@ -14,13 +14,12 @@ on:
 
 jobs:
   version:
-    permissions:
-      contents: write
     name: Create new version ${{ github.event. inputs.version }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ref: tlatoani
       - run: |
           git config user.name github-actions
