@@ -1,3 +1,5 @@
+import { animated, useSpring } from '@react-spring/web'
+import { useDrag } from '@use-gesture/react'
 import classNames from 'classnames'
 import React, { useState } from 'react'
 
@@ -21,68 +23,28 @@ type Props = {
  * @returns A card component
  */
 const Card: React.FC<Props> = ({ children, cardIndex }) => {
-  const [initialX, setInitialX] = useState(0)
-  const [currentX, setCurrentX] = useState(0)
-  const [active, setActive] = useState(false)
-  const [position, setPosition] = useState(0)
-
   const threshold = 100
+
+  const [cardPos, api] = useSpring(() => ({ x: 0 }))
+  const cardBind = useDrag(({ down, movement: [mx], direction: [xDir], velocity }) => {
+    api.start({ x: down ? mx : 0, immediate: down })
+  })
   const componentClassNames = classNames(classes.cardFlickCard)
 
-  // const handleDragStart = (
-  //   event: React.MouseEvent<HTMLDivElement, MouseEvent> & React.TouchEvent<HTMLDivElement>,
-  // ) => {
-  //   // Prevent the default behaviour of the event
-  //   event.preventDefault()
-
-  //   console.log(event.type)
-  //   if (event.type === 'touchstart') {
-  //     setInitialX(event.touches[0].clientX)
-  //   } else {
-  //     setInitialX(event.clientX)
-  //   }
-
-  //   setActive(true)
-  // }
-
-  // const handleDragMove = (
-  //   event: React.MouseEvent<HTMLDivElement, MouseEvent> & React.TouchEvent<HTMLDivElement>,
-  // ) => {
-  //   if (!active) return
-
-  //   if (event.type === 'touchmove') {
-  //     setCurrentX(event.touches[0].clientX)
-  //   } else {
-  //     setCurrentX(event.clientX)
-  //   }
-
-  //   const diffX = currentX - initialX
-  //   setPosition(diffX)
-
-  //   if (diffX > 0) {
-  //     console.log('right')
-  //   }
-  // }
-
-  // const handleDragEnd = (
-  //   event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.TouchEvent<HTMLDivElement>,
-  // ) => {}
-
-  // const handleFlyOff = (
-  //   event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.TouchEvent<HTMLDivElement>,
-  // ) => {}
-
   return (
-    <div
+    <animated.div
       // onTouchStart={handleDragStart}
       // onMouseDown={handleDragStart}
       className={componentClassNames}
+      {...cardBind()}
       style={{
-        left: position,
+        left: cardPos.x,
+        transform: `rotateX(${cardPos.x}deg)`,
+        touchAction: 'none',
       }}
     >
       {children}
-    </div>
+    </animated.div>
   )
 }
 

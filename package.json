@@ -66,8 +66,7 @@
   },
   "peerDependencies": {
     "react": "16.8.0 || >=17.x",
-    "react-dom": "16.8.0 || >=17.x",
-    "@use-gesture/react": "^10.2.24"
+    "react-dom": "16.8.0 || >=17.x"
   },
   "repository": {
     "type": "git",
@@ -93,5 +92,8 @@
   },
   "homepage": "https://github.com/jorgejimenezQ/card-flick-react#readme",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "@react-spring/web": "^9.7.0",
+    "@use-gesture/react": "^10.2.24"
+  }
 }
