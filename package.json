@@ -66,7 +66,8 @@
   },
   "peerDependencies": {
     "react": "16.8.0 || >=17.x",
-    "react-dom": "16.8.0 || >=17.x"
+    "react-dom": "16.8.0 || >=17.x",
+    "@use-gesture/react": "^10.2.24"
   },
   "repository": {
     "type": "git",
@@ -91,5 +92,6 @@
     "url": "https://github.com/jorgejimenezQ/card-flick-react/issues"
   },
   "homepage": "https://github.com/jorgejimenezQ/card-flick-react#readme",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

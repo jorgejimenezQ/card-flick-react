@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import { useState } from 'react'
 
 import classes from '../styles/cardFlick.module.css'
 import Card from './Card'
@@ -11,6 +12,9 @@ type CardFlickProps = {
     id: number
     content: React.ReactNode
   }[]
+  onSwipe?: (card: React.ReactNode) => void
+  onSwipeLeft?: (card: React.ReactNode) => void
+  onSwipeRight?: (card: React.ReactNode) => void
 }
 
 /**
@@ -25,7 +29,16 @@ type CardFlickProps = {
  * @example
  * <CardFlick cards={[{ id: 1, content: <div>Card 1</div> }]} />
  */
-export const CardFlick: React.FC<CardFlickProps> = ({ cards, className }) => {
+export const CardFlick: React.FC<CardFlickProps> = ({
+  cards,
+  className,
+  onSwipe,
+  onSwipeLeft,
+  onSwipeRight,
+}) => {
+  const [activeCard, setActiveCard] = useState<any | null>(null)
+  const [currentCards, setCurrentCards] = useState(cards)
+
   // Check for the existence of the cards prop
   if (!cards) {
     throw new Error('The cards prop is required')
@@ -43,15 +56,32 @@ export const CardFlick: React.FC<CardFlickProps> = ({ cards, className }) => {
 
   const componentClassNames = classnames(classes.cardsWrapper, className)
 
+  const handleRemoveCard = (cardIndex: number) => {
+    const newCards = currentCards.filter((card) => card.id !== cardIndex)
+    setCurrentCards(() => newCards)
+  }
+
   return (
     <div className={componentClassNames}>
       {cards.map((card) => {
         return (
-          <Card key={card.id} cardIndex={card.id}>
+          <Card
+            key={card.id}
+            cardIndex={card.id}
+            onSwipe={onSwipe}
+            onSwipeLeft={onSwipeLeft}
+            onSwipeRight={onSwipeRight}
+          >
             {card.content}
           </Card>
         )
       })}
     </div>
   )
+}
+
+CardFlick.defaultProps = {
+  onSwipe: () => {},
+  onSwipeLeft: () => {},
+  onSwipeRight: () => {},
 }

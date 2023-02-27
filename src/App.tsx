@@ -6,7 +6,7 @@ function App() {
     {
       id: 1,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 1</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
@@ -19,7 +19,7 @@ function App() {
     {
       id: 2,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 2</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
@@ -32,7 +32,7 @@ function App() {
     {
       id: 3,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 3</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
@@ -45,7 +45,7 @@ function App() {
     {
       id: 4,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 4</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
@@ -58,7 +58,7 @@ function App() {
     {
       id: 5,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 5</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
@@ -71,7 +71,7 @@ function App() {
     {
       id: 6,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 6</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
@@ -84,7 +84,7 @@ function App() {
     {
       id: 7,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 7</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
@@ -97,7 +97,7 @@ function App() {
     {
       id: 8,
       content: (
-        <div>
+        <div className={classes.card}>
           <h1>Card 8</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
