@@ -2,7 +2,7 @@
 <!-- [![Build Status](https://travis-ci.org/jorgejimenezdev/card-flick-react.svg?branch=master)](https://travis-ci.org/jorgejimenezdev/card-flick-react) -->
 <!-- [![Coverage Status](https://coveralls.io/repos/github/jorgejimenezdev/card-flick-react/badge.svg?branch=master)](https://coveralls.io/github/jorgejimenezdev -->
 
-[![npm version](https://img.shields.io/npm/v/card-flick.svg)](https://www.npmjs.com/package/card-flick-react)
+[![npm version](https://img.shields.io/npm/v/card-flick-react.svg)](https://www.npmjs.com/package/card-flick-react)
 [![Build Status](https://github.com/jorgejimenezQ/card-flick/actions/workflows/test.yml/badge.svg)](https://github.com/jorgejimenezQ/card-flick/actions/workflows/test.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
