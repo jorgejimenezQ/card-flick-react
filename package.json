@@ -1,7 +1,7 @@
 {
   "name": "card-flick-react",
   "private": false,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "description": "Card-flick is a type of card swipe user interface that allows users to interact with a stack of cards by flicking them left or right. This UI element is commonly used in mobile applications and websites to provide a more intuitive and engaging user experience.",
   "scripts": {

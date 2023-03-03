@@ -1,4 +1,12 @@
-#Card Flick React - Card Flick React is a lightweight package for implementing a card swiping effect in your React web application. With just a few lines of code, you can easily add a Tinder-like swiping feature to your app.
+<!-- [![npm version](https://badge.fury.io/js/card-flick-react.svg)](https://badge.fury.io/js/card-flick-react) -->
+<!-- [![Build Status](https://travis-ci.org/jorgejimenezdev/card-flick-react.svg?branch=master)](https://travis-ci.org/jorgejimenezdev/card-flick-react) -->
+<!-- [![Coverage Status](https://coveralls.io/repos/github/jorgejimenezdev/card-flick-react/badge.svg?branch=master)](https://coveralls.io/github/jorgejimenezdev -->
+
+[![npm version](https://img.shields.io/npm/v/card-flick.svg)](https://www.npmjs.com/package/card-flick-react)
+[![Build Status](https://github.com/jorgejimenezQ/card-flick/actions/workflows/test.yml/badge.svg)](https://github.com/jorgejimenezQ/card-flick/actions/workflows/test.yml)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+
+# Card Flick React - a card swiping effect in your React web application.
 
 ## Installation
 
@@ -6,6 +14,12 @@ To install Card Flick React, simply run the following command in your terminal:
 
 ```bash
 npm install card-flick-react
+```
+
+or
+
+```bash
+yarn add card-flick-react
 ```
 
 ## Usage
@@ -23,16 +37,16 @@ const cards = [
 ]
 
 function MyComponent() {
-  const handleSwipeRight = (card) => {
-    console.log(`Swiped right on card with ID ${card.id}`)
+  const handleSwipeRight = (cardIndex) => {
+    console.log(`Swiped right on cardIndex with ID ${cardIndex}`)
   }
 
-  const handleSwipeLeft = (card) => {
-    console.log(`Swiped left on card with ID ${card.id}`)
+  const handleSwipeLeft = (cardIndex) => {
+    console.log(`Swiped left on cardIndex with ID ${cardIndex}`)
   }
 
-  const handleSwipe = (card) => {
-    console.log(`Swiped on card with ID ${card.id}`)
+  const handleSwipe = (cardIndex) => {
+    console.log(`Swiped on cardIndex with ID ${cardIndex}`)
   }
 
   return (
@@ -119,3 +133,11 @@ If you find a bug or want to suggest a new feature, feel free to open an issue o
 ## License
 
 Card-Flick is open-source software licensed under the MIT license. See the LICENSE file for more details.
+
+## Author
+
+[![Created by Jorge Jimenez](https://img.shields.io/badge/created%20by-Jorge%20Jimenez-blue.svg)](https://jorgejimenezq.github.io.)
+
+<!-- [![LinkedIn](https://img.shields.io/badge/LinkedIn-Jorge%20Jimenez-blue.svg)](https://www.linkedin.com/in/jorgejimenezq/) -->
+
+<!-- [![Twitter](https://img.shields.io/badge/Twitter-jorgejimenezQ-blue.svg)](https://twitter.com/jorgejimenezQ) -->

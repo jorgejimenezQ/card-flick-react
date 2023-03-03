@@ -1,0 +1,16 @@
+node_modules
+npm-debug.log
+*.log
+*.test.js
+src
+__tests__
+.eslintrc.js
+babel.config.js
+webpack.config.js
+/.husky
+/.github
+/.vscode
+.prettierrc
+.eslintrc.json
+index.html
+./vite.*
