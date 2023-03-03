@@ -1,113 +1,84 @@
+import { useEffect, useRef, useState } from 'react'
+
 import classes from './app.module.css'
 import { CardFlick } from './component/CardFlick/CardFlick'
 
+type Card = {
+  id: number
+  content: JSX.Element | string | number | any
+}
+
 function App() {
-  const cards = [
-    {
-      id: 1,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 1</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
+  const [cards, setCards] = useState(new Array<Card>())
+  const cardsArray = new Array<Card>()
+  const effectRan = useRef(false)
 
-    {
-      id: 2,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 2</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
+  useEffect(() => {
+    if (effectRan.current) return
+    effectRan.current = true
+    const suits = ['clubs', 'diamonds', 'hearts', 'spades']
+    const newCards: Card[] = []
+    let cardIndex = 0
 
-    {
-      id: 3,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 3</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
+    suits.forEach((suit) => {
+      for (let i = 1; i <= 13; i++) {
+        let cardUrl = 'assets/cards-png/'
+        let cardDescription = ''
 
-    {
-      id: 4,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 4</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
+        if (i === 1) {
+          cardUrl += `ace_of_${suit}.png`
+          cardDescription = `Ace of ${suit}`
+        } else if (i === 11) {
+          cardUrl += `jack_of_${suit}2.png`
+          cardDescription = `Jack of ${suit}`
+        } else if (i === 12) {
+          cardUrl += `queen_of_${suit}2.png`
+          cardDescription = `Queen of ${suit}`
+        } else if (i === 13) {
+          cardUrl += `king_of_${suit}2.png`
+          cardDescription = `King of ${suit}`
+        } else {
+          cardUrl += `${i}_of_${suit}.png`
+          cardDescription = `${i} of ${suit}`
+        }
 
-    {
-      id: 5,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 5</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
+        const image = new URL(cardUrl, import.meta.url)
 
-    {
-      id: 6,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 6</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
+        newCards.push({
+          id: cardIndex++,
+          content: (
+            <div className={classes.card}>
+              <img src={image.href} alt={cardDescription} />
+            </div>
+          ),
+        })
+      }
+    })
 
-    {
-      id: 7,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 7</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
+    // Shuffle the cards
+    for (let i = newCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[newCards[i], newCards[j]] = [newCards[j], newCards[i]]
+    }
 
-    {
-      id: 8,
-      content: (
-        <div className={classes.card}>
-          <h1>Card 8</h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente nostrum provident
-            enim ea corporis necessitatibus porro quidem repellendus!.
-          </p>
-        </div>
-      ),
-    },
-  ]
-  return <CardFlick className={classes.cardContainer} cards={cards} />
+    cardsArray.push(...newCards)
+    setCards(newCards)
+  }, [])
+
+  const handleSwipe = (cardIndex: number) => {}
+  const handleSwipeLeft = (cardIndex: number) => {}
+
+  const handleSwipeRight = (cardIndex: number) => {}
+  return (
+    <CardFlick
+      className={classes.cardContainer}
+      cards={cardsArray}
+      onSwipe={handleSwipe}
+      onSwipeLeft={handleSwipeLeft}
+      onSwipeRight={handleSwipeRight}
+      scatterCards={true}
+    />
+  )
 }
 
 export default App

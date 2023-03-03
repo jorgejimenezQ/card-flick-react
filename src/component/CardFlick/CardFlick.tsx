@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import classes from '../styles/cardFlick.module.css'
 import Card from './Card'
@@ -10,11 +10,13 @@ type CardFlickProps = {
   className?: string | string[]
   cards: {
     id: number
-    content: React.ReactNode
+    content: React.ReactNode | JSX.Element | string | number | any
   }[]
-  onSwipe?: (card: React.ReactNode) => void
-  onSwipeLeft?: (card: React.ReactNode) => void
-  onSwipeRight?: (card: React.ReactNode) => void
+  onSwipe?: (card: number) => void
+  onSwipeLeft?: (card: number) => void
+  onSwipeRight?: (card: number) => void
+  scatterCards?: boolean
+  threshold?: number
 }
 
 /**
@@ -35,35 +37,25 @@ export const CardFlick: React.FC<CardFlickProps> = ({
   onSwipe,
   onSwipeLeft,
   onSwipeRight,
+  scatterCards = false,
+  threshold = 100,
 }) => {
-  const [activeCard, setActiveCard] = useState<any | null>(null)
   const [currentCards, setCurrentCards] = useState(cards)
-
-  // Check for the existence of the cards prop
-  if (!cards) {
-    throw new Error('The cards prop is required')
-  }
-
-  // Check that the cards prop is an array
-  if (!Array.isArray(cards)) {
-    throw new Error('The cards prop must be an array')
-  }
-
-  // Check that the cards prop is not empty
-  if (cards.length === 0) {
-    throw new Error('The cards prop must not be empty')
-  }
-
   const componentClassNames = classnames(classes.cardsWrapper, className)
 
-  const handleRemoveCard = (cardIndex: number) => {
-    const newCards = currentCards.filter((card) => card.id !== cardIndex)
-    setCurrentCards(() => newCards)
-  }
+  const handleRemoveCard = useCallback(
+    (cardIndex: number) => {
+      const newCards = currentCards.filter((card) => {
+        return card.id !== cardIndex
+      })
+      setCurrentCards(() => newCards)
+    },
+    [currentCards],
+  )
 
   return (
-    <div className={componentClassNames}>
-      {cards.map((card) => {
+    <div className={componentClassNames} style={{ position: 'relative' }}>
+      {currentCards.map((card) => {
         return (
           <Card
             key={card.id}
@@ -71,6 +63,9 @@ export const CardFlick: React.FC<CardFlickProps> = ({
             onSwipe={onSwipe}
             onSwipeLeft={onSwipeLeft}
             onSwipeRight={onSwipeRight}
+            onRemoveCard={handleRemoveCard}
+            scatterCards={scatterCards}
+            threshold={threshold}
           >
             {card.content}
           </Card>
