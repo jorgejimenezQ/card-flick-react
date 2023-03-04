@@ -51,7 +51,7 @@ const Card: React.FC<Props> = ({
   }, [])
 
   // useSpring is a hook from react-spring that allows us to animate values
-  const [cardPos, api] = useSpring(() => ({ x: 0, scale: 1 }))
+  const [cardPos, api] = useSpring(() => ({ x: 0, scale: 1, shadow: false }))
   // When the card is swiped, this spring will animate the card off the screen
 
   // set the initial rotation of the card when it is first rendered
@@ -64,7 +64,7 @@ const Card: React.FC<Props> = ({
     // if swiped disable dragging
     if (swipeComplete) return
 
-    api.start({ x: down ? mx : 0, scale: down ? 1.1 : 1, immediate: down })
+    api.start({ x: down ? mx : 0, scale: down ? 1.1 : 1, shadow: down, immediate: down })
     if (down && Math.abs(mx) > threshold) {
       setSwipeComplete(true)
 
@@ -106,6 +106,9 @@ const Card: React.FC<Props> = ({
         width: '100%',
         height: '100%',
         userSelect: 'none',
+        boxShadow: cardPos.shadow.to((s) =>
+          s ? '0 5px 15px rgba(0,0,0,0.2)' : '0 1px 2px rgba(0,0,0,0.2)',
+        ),
       }}
     >
       {children}

@@ -52,9 +52,20 @@ export const CardFlick: React.FC<CardFlickProps> = ({
     },
     [currentCards],
   )
-
   return (
-    <div className={componentClassNames} style={{ position: 'relative' }}>
+    <div
+      className={componentClassNames}
+      style={{
+        position: 'relative',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        boxShadow: '0 0 50px 0 rgba(0, 0, 0, 0.2)',
+        WebkitBoxShadow: '0 0 50px 0 rgba(0, 0, 0, 0.2)',
+        MozBoxShadow: '0 0 50px 0 rgba(0, 0, 0, 0.2)',
+      }}
+    >
       {currentCards.map((card) => {
         return (
           <Card
