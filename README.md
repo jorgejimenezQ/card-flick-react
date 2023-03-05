@@ -8,6 +8,14 @@
 
 # Card Flick React - a card swiping effect in your React web application.
 
+Card Flick React is a React component that allows you to add a card swiping effect to your web application.
+
+<!-- The gif displaying the card effect -->
+
+## Demo
+
+![Card Flick React Demo](./demo.gif)
+
 ## Installation
 
 To install Card Flick React, simply run the following command in your terminal:
