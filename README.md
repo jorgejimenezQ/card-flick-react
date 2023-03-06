@@ -92,6 +92,40 @@ const cards = [
 <CardFlick cards={cards} />
 ```
 
+The content property can also be a React element, such as a div or a component.
+
+```jsx
+const cards = [
+  {
+    id: 1,
+    content: (
+      <div>
+        <h1>Card 1</h1>
+        <p>Some content</p>
+      </div>
+    ),
+  },
+  {
+    id: 2,
+    content: (
+      <div>
+        <h1>Card 2</h1>
+        <p>Some content</p>
+      </div>
+    ),
+  },
+  {
+    id: 3,
+    content: (
+      <div>
+        <h1>Card 3</h1>
+        <p>Some content</p>
+      </div>
+    ),
+  },
+]
+```
+
 ## onSwipeRight
 
 A callback function called when the user swipes right on a card. The function is passed the card object as an argument.
