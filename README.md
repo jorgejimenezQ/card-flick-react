@@ -32,7 +32,12 @@ yarn add card-flick-react
 
 ## Usage
 
-To use Card Flick React, you can import the CardFlick component from the package and use it in your React component as follows:
+To use Card Flick React:
+
+1. Import the CardFlick component from the package.
+2. Pass an array of cards to the CardFlick component.
+3. Define callback functions to handle the swiping effect.
+4. Render the CardFlick component in your React component.
 
 ```jsx
 import React from 'react'
@@ -59,6 +64,7 @@ function MyComponent() {
 
   return (
     <CardFlick
+      className="card-flick-container"
       cards={cards}
       onSwipeRight={handleSwipeRight}
       onSwipeLeft={handleSwipeLeft}
@@ -71,6 +77,29 @@ function MyComponent() {
 In this example, we define an array of cards and pass it to the CardFlick component. We also define three callback functions: handleSwipeRight, handleSwipeLeft, and handleSwipe, which are called when the user swipes right, left, or either direction on a card, respectively.
 
 The CardFlick component renders the cards and handles the swiping effect. By default, cards are swiped by dragging them with the mouse or touch gestures.
+
+## Don't forget to style your component!
+
+```css
+.cardContainer {
+  width: 160px;
+  height: 270px;
+  margin: 100px auto;
+  box-shadow: 0px 0px 74px -31px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0px 0px 74px -31px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 0px 74px -31px rgba(0, 0, 0, 0.6);
+}
+
+.card {
+  /* background-color: aqua; */
+  height: 100%;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+```
 
 ## Props
 
